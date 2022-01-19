@@ -34,6 +34,19 @@ function App() {
     }
   }
 
+  const next = (e) => {
+      const pages = document.querySelectorAll(".infor") ; 
+      console.log(pages) ;
+      pages[0].classList.add("hide") ; 
+      pages[1].classList.remove("hide") ;
+  } 
+
+  const prev = (e) => {
+    const pages = document.querySelectorAll(".infor") ; 
+    console.log(pages) ;
+    pages[1].classList.add("hide") ; 
+    pages[0].classList.remove("hide") ;
+} 
 
   const dateBuilder = (d) => {
     let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -46,19 +59,7 @@ function App() {
 
     return `${day} ${date} ${month} ${year}`
   }
-  var i = 0;
-  var j = 1;
-  const slid = (e) => {
-    const pages = document.querySelectorAll(".infor");
-    console.log(pages);
-    setInterval(() => {
-      pages[i].classList.add("hide");
-      pages[j].classList.remove("hide");
-      let k = j;
-      j = i;
-      i = k;
-    }, 5000);
-  }
+  
   return (
     <div className={(weather.main != null) ? (`app ${weather.weather[0].main}`) : 'app'}>
       <main>
@@ -76,7 +77,7 @@ function App() {
           (loading === true) ? (
             // information card begin 
             <>
-              <div className='mt-5 infor vis' onLoad={slid}>
+              <div className='mt-5 infor vis' onAnimationEnd={next}>
                 <div className="location-box">
                   <div className="location">{weather.name}, {weather.sys.country}</div>
                   <div className="date">{dateBuilder(new Date())}</div>
@@ -87,10 +88,16 @@ function App() {
                     <img width="90" height="90" src={`http://openweathermap.org/img/w/${icon}.png`} />
                   </div>
                   <div className="weather">{weather.weather[0].main}</div>
-                </div>
+                </div> 
+                <button class="carousel-control-prev" type="button" onClick={next} data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+                </button>
+                <button onClick={next} class="carousel-control-next" type="button"><span className="carousel-control-next-icon" height="200%" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span></button>
               </div>
               {/* // information card end  */}
-              <div className=' temp infor hide vis'>
+              <div className=' temp infor hide vis mt-5 pt-5' onAnimationEnd={prev}>
                 <div className='d-flex justify-content-center text-start fs-4 fw-5' >
                   <p className='border-0 p-2 p-sm-4 rounder-3 para'>
                     pressure: {weather.main.pressure}mb<br />
@@ -106,6 +113,13 @@ function App() {
                     </svg>
                   </p>
                 </div>
+                <button class="carousel-control-prev" type="button" onClick={prev} data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+                </button> 
+                <button onClick={prev} class="carousel-control-next" type="button"><span className="carousel-control-next-icon" height="200%" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span></button>
+
               </div>
             </>
           ) : (
