@@ -1,5 +1,5 @@
-import React, { useState } from 'react'; 
-import './App.css' ; 
+import React, { useState } from 'react';
+import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 const api = {
   key: "50571f88a20f47961d7fa7f392951636",
@@ -8,27 +8,31 @@ const api = {
 
 function App() {
   const [query, setQuery] = useState('');
-  const [weather, setWeather] = useState({}); 
-  const [icon, setIcon] = useState('') ;
+  const [weather, setWeather] = useState({});
+  const [icon, setIcon] = useState('');
+  const [loading, setLoading] = useState(true);
   const search = (e) => {
     if (e.key === "Enter") {
+      setLoading(false);
       fetch(`${api.base}weather?q=${query}&units=metric&APPID=${api.key}`)
         .then(res => res.json())
         .then(result => {
-          setWeather(result); 
+          setWeather(result);
           setQuery('');
           console.log(result);
-          if(result.message != null) 
-          {
-            alert("place not found") ;
+          if (result.message === 'Nothing to geocode') {
+            alert("please type something in the search bar");
+          } 
+          else if (result.message === 'city not found') {
+            alert("place not found");
+          } 
+          else {
+            setIcon(result.weather[0].icon);
           }
-          else
-          {
-            setIcon(result.weather[0].icon) ;
-          }
+          setLoading(true);
         });
     }
-  } 
+  }
 
 
   const dateBuilder = (d) => {
@@ -42,44 +46,87 @@ function App() {
 
     return `${day} ${date} ${month} ${year}`
   }
-
+  var i = 0;
+  var j = 1;
+  const slid = (e) => {
+    const pages = document.querySelectorAll(".infor");
+    console.log(pages);
+    setInterval(() => {
+      pages[i].classList.add("hide");
+      pages[j].classList.remove("hide");
+      let k = j;
+      j = i;
+      i = k;
+    }, 5000);
+  }
   return (
     <div className={(weather.main != null) ? (`app ${weather.weather[0].main}`) : 'app'}>
       <main>
         <div className="search-box mb-5">
-          <input 
+          <input
             type="text"
-            className="search-bar"
-            placeholder="Search..."
+            className="search-bar text-muted"
+            placeholder="Find Place..."
             onChange={(e) => setQuery(e.target.value)}
             value={query}
             onKeyPress={search}
           />
         </div>
         {(weather.main != null) ? (
-        <div className='mt-5'>
-          <div className="location-box">
-            <div className="location">{weather.name}, {weather.sys.country}</div>
-            <div className="date">{dateBuilder(new Date())}</div>
-          </div>
-          <div className="weather-box">
-            <div className="temp">
-              {Math.round(weather.main.temp)}°c
-              <img width = "75" height="75" src={`http://openweathermap.org/img/w/${icon}.png`} />
-            </div>
-            <div className="weather">{weather.weather[0].main}</div>
-          </div>
-        </div>
-        ) : ( 
+          (loading === true) ? (
+            // information card begin 
+            <>
+              <div className='mt-5 infor vis' onLoad={slid}>
+                <div className="location-box">
+                  <div className="location">{weather.name}, {weather.sys.country}</div>
+                  <div className="date">{dateBuilder(new Date())}</div>
+                </div>
+                <div className="weather-box">
+                  <div className="temp">
+                    {Math.round(weather.main.temp)}°C
+                    <img width="90" height="90" src={`http://openweathermap.org/img/w/${icon}.png`} />
+                  </div>
+                  <div className="weather">{weather.weather[0].main}</div>
+                </div>
+              </div>
+              {/* // information card end  */}
+              <div className=' temp infor hide vis'>
+                <div className='d-flex justify-content-center text-start fs-4 fw-5' >
+                  <p className='border-0 p-2 p-sm-4 rounder-3 para'>
+                    pressure: {weather.main.pressure}mb<br />
+                    humidity: {weather.main.humidity}%<br />
+                    wind speed : {weather.wind.speed}m/s <br />
+                    max temperatur : {Math.floor(weather.main.temp_max + 5)}°C
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-caret-up-fill" viewBox="0 0 16 16">
+                      <path d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
+                    </svg> <br />
+                    min temperatur : {Math.floor(weather.main.temp_min - 5)}°C&nbsp;
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                      <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                    </svg>
+                  </p>
+                </div>
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="d-flex justify-content-center">
+                <div className="spinner-border" role="status">
+                  <span className="sr-only"></span>
+                </div>
+              </div>
+            </>
+          )
+        ) : (
           <>
-          <div className='container-fluid mt-5'> 
-          <div className='row mt-5'> 
-          <div className= 'col-12 mt-5'>
-          <div className='text-center notfound mt-5'>GLOBAL WEATHER APP</div>  
-        </div>
-        </div>
-        </div>
-        </>
+            <div className='container-fluid mt-5'>
+              <div className='row mt-5'>
+                <div className='col-12 mt-5'>
+                  <div className='text-center notfound mt-5'>GLOBAL WEATHER APP</div>
+                </div>
+              </div>
+            </div>
+          </>
         )
         }
       </main>
