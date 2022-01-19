@@ -5,7 +5,6 @@ const api = {
   key: "50571f88a20f47961d7fa7f392951636",
   base: "https://api.openweathermap.org/data/2.5/"
 }
-
 function App() {
   const [query, setQuery] = useState('');
   const [weather, setWeather] = useState({});
@@ -22,10 +21,10 @@ function App() {
           console.log(result);
           if (result.message === 'Nothing to geocode') {
             alert("please type something in the search bar");
-          } 
+          }
           else if (result.message === 'city not found') {
             alert("place not found");
-          } 
+          }
           else {
             setIcon(result.weather[0].icon);
           }
@@ -35,18 +34,18 @@ function App() {
   }
 
   const next = (e) => {
-      const pages = document.querySelectorAll(".infor") ; 
-      console.log(pages) ;
-      pages[0].classList.add("hide") ; 
-      pages[1].classList.remove("hide") ;
-  } 
+    const pages = document.querySelectorAll(".infor");
+    console.log(pages);
+    pages[0].classList.add("hide");
+    pages[1].classList.remove("hide");
+  }
 
   const prev = (e) => {
-    const pages = document.querySelectorAll(".infor") ; 
-    console.log(pages) ;
-    pages[1].classList.add("hide") ; 
-    pages[0].classList.remove("hide") ;
-} 
+    const pages = document.querySelectorAll(".infor");
+    console.log(pages);
+    pages[1].classList.add("hide");
+    pages[0].classList.remove("hide");
+  }
 
   const dateBuilder = (d) => {
     let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -59,7 +58,7 @@ function App() {
 
     return `${day} ${date} ${month} ${year}`
   }
-  
+
   return (
     <div className={(weather.main != null) ? (`app ${weather.weather[0].main}`) : 'app'}>
       <main>
@@ -88,13 +87,13 @@ function App() {
                     <img width="90" height="90" src={`http://openweathermap.org/img/w/${icon}.png`} />
                   </div>
                   <div className="weather">{weather.weather[0].main}</div>
-                </div> 
+                </div>
                 <button class="carousel-control-prev" type="button" onClick={next} data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
                 </button>
                 <button onClick={next} class="carousel-control-next" type="button"><span className="carousel-control-next-icon" height="200%" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span></button>
+                  <span class="visually-hidden">Next</span></button>
               </div>
               {/* // information card end  */}
               <div className=' temp infor hide vis mt-5 pt-5' onAnimationEnd={prev}>
@@ -103,22 +102,22 @@ function App() {
                     pressure: {weather.main.pressure}mb<br />
                     humidity: {weather.main.humidity}%<br />
                     wind speed : {weather.wind.speed}m/s <br />
-                    max temperatur : {Math.floor(weather.main.temp_max + 5)}°C
+                    max temperature : {Math.floor(weather.main.temp_max + 5)}°C
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-caret-up-fill" viewBox="0 0 16 16">
                       <path d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
                     </svg> <br />
-                    min temperatur : {Math.floor(weather.main.temp_min - 5)}°C&nbsp;
+                    min temperature : {Math.floor(weather.main.temp_min - 5)}°C&nbsp;
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
                       <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
                     </svg>
                   </p>
                 </div>
                 <button class="carousel-control-prev" type="button" onClick={prev} data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-                </button> 
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
                 <button onClick={prev} class="carousel-control-next" type="button"><span className="carousel-control-next-icon" height="200%" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span></button>
+                  <span class="visually-hidden">Next</span></button>
 
               </div>
             </>
