@@ -1,10 +1,13 @@
 import React, { useRef, useEffect, useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../../assets/css/about.css'
+import '../../assets/css/contact.css'
 import emailjs from '@emailjs/browser';
-
-function About() {
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+function Contact() {
     const [result, setResult] = useState(false);
+    const success = () => toast("mail sent"); 
+    const errorfound = () => toast("Something went wrong");
     const form = useRef();
     const sendEmail = (e) => {
         e.preventDefault();
@@ -12,20 +15,20 @@ function About() {
             .then((result) => {
                 console.log(result.text);
                 if (result.text === 'OK') {
-                    alert("mail sent");
+                    success() ;
                     setResult(true);
                 }
                 else {
-                    alert("something went wrong");
+                    errorfound() ;
                 }
             }, (error) => {
                 console.log(error.text);
-                alert("something went wrong");
+                errorfound() ;
             });
         e.target.reset();
     };
     return (
-        <div className="container">
+        <div className="container mainn">
             <div className="card">
                 <div className="card-image">
                     <h2 className="card-heading">
@@ -35,11 +38,11 @@ function About() {
                 </div>
                 <form className="card-form contact-form" id="ms-form" ref={form} onSubmit={sendEmail}>
                     <div className="input">
-                        <input type="text" name="name" className="input-field" required />
+                        <input type="text" name="from_name" className="input-field" required />
                         <label className="input-label">Full name</label>
                     </div>
                     <div className="input">
-                        <input type="text" name="email" className="input-field" required />
+                        <input type="email" name="email" className="input-field" required />
                         <label className="input-label">Email</label>
                     </div>
                     <div className="input">
@@ -54,9 +57,10 @@ function About() {
                     <p>we received your response we will reach you out soon</p>
                 </div>
             </div>
+            <ToastContainer position="top-center" />
         </div>
 
     )
 }
 
-export default About 
+export default Contact

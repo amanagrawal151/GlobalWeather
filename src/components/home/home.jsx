@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css'; 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Footer from '../../layouts/footer/footer';
 const api = {
   key: "50571f88a20f47961d7fa7f392951636",
   base: "https://api.openweathermap.org/data/2.5/"
@@ -9,6 +12,8 @@ function Home() {
   const [weather, setWeather] = useState({});
   const [icon, setIcon] = useState('');
   const [loading, setLoading] = useState(true);
+  const empty = () => toast("Please type something in the search bar"); 
+  const errorfound = () => toast("Place not found you can try the zip codes");
   const search = (e) => {
     if (e.key === "Enter") {
       setLoading(false);
@@ -19,10 +24,10 @@ function Home() {
           setQuery('');
           console.log(result);
           if (result.message === 'Nothing to geocode') {
-            alert("please type something in the search bar");
+            empty() ;
           }
           else if (result.message === 'city not found') {
-            alert("place not found");
+            errorfound() ;
           }
           else {
             setIcon(result.weather[0].icon);
@@ -59,6 +64,8 @@ function Home() {
   }
 
   return (
+    <>
+    <ToastContainer position='top-center' />
     <div className={(weather.main != null) ? (`app ${weather.weather[0].main}`) : 'app'}>
       <main>
         <div className="search-box mb-5">
@@ -141,8 +148,9 @@ function Home() {
           </>
         )
         }
-      </main>
+      </main> 
     </div>
+    </>
   );
 }
 
