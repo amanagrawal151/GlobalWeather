@@ -35,7 +35,29 @@ function Home() {
           setLoading(true);
         });
     }
-  }
+  } 
+
+  const search2 = () => {
+    setLoading(false);
+      fetch(`${api.base}weather?q=${query}&units=metric&APPID=${api.key}`)
+        .then(res => res.json())
+        .then(result => {
+          setWeather(result);
+          setQuery('');
+          console.log(result);
+          if (result.message === 'Nothing to geocode') {
+            empty() ;
+          }
+          else if (result.message === 'city not found') {
+            errorfound() ;
+          }
+          else {
+            setIcon(result.weather[0].icon);
+          }
+          setLoading(true);
+        });
+    }
+
 
   const next = (e) => {
     const pages = document.querySelectorAll(".infor");
@@ -67,7 +89,10 @@ function Home() {
     <>
     <ToastContainer position='top-center' />
     <div className={(weather.main != null) ? (`app ${weather.weather[0].main}`) : 'app'}>
-      <main>
+      <main> 
+        <div className='container'> 
+        <div className='row'>
+          <div className='col-sm-10 col-8'>
         <div className="search-box mb-5">
           <input
             type="text"
@@ -77,6 +102,10 @@ function Home() {
             value={query}
             onKeyPress={search}
           />
+        </div> 
+        </div> 
+        <div className='col-sm-2 col-4'><button type="button" class="btn btn-outline-dark rounded-pill searchbutton mt-1 px-4" onClick={search2}>Search</button></div>
+        </div>
         </div>
         {(weather.main != null) ? (
           (loading === true) ? (
@@ -90,7 +119,9 @@ function Home() {
                 <div className="weather-box">
                   <div className="temp">
                     {Math.round(weather.main.temp)}°C
+                    <div className='ms-5'>
                     <img width="90" height="90" src={`http://openweathermap.org/img/w/${icon}.png`} />
+                    </div>
                   </div>
                   <div className="weather">{weather.weather[0].main}</div>
                 </div>

@@ -55,7 +55,6 @@
     display: block;
     width: 100%;
     padding: 15px;
-  
     appearance: none;
     background: none;
     border: none;
@@ -67,6 +66,10 @@
     color: #313131;
     font-size: 20px;
     transition: 0.4s ease;
+  } 
+
+  searchbutton {
+    border-radius: 100px;
   }
   
   .search-box .search-bar:focus {
