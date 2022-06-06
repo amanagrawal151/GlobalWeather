@@ -43,7 +43,7 @@ const Profile = () => {
                                     <div class=" d-flex mt-2"> <Link to="/edit"> <button class="btn1 btn-dark">Edit Profile</button> </Link>
                                     </div>
                                     <div class="text mt-3">
-                                        <div>heya this is a user from GlobalWeather nice to meet you</div>
+                                        <div>heyaa this is a user from GlobalWeather nice to meet you</div>
                                         <div class="gap-3 mt-3 icons d-flex flex-row justify-content-center align-items-center">
                                             <span><i class="fa fa-twitter"></i></span> <span><i class="fa fa-facebook-f"></i></span>
                                             <span><i class="fa fa-instagram"></i></span> <span><i class="fa fa-linkedin"></i></span>

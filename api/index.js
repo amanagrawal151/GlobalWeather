@@ -6,9 +6,10 @@ const helmet = require("helmet");
 const morgan = require("morgan");
 const userRoute = require("./routes/users");
 const authRoute = require("./routes/auth");
+const path = require('path'); 
 // const postRoute = require("./routes/posts");
 var cors = require('cors')
-
+const PORT = process.env.PORT || 8800
 app.use(cors()) // Use this after the variable declaration
 dotenv.config();
 
@@ -29,6 +30,13 @@ app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 // app.use("/api/posts", postRoute);
 
-app.listen(8800, () => {
-  console.log("Backend server is running!"); 
+//server production asssets 
+if(process.env.NODE_ENV === "production") 
+{
+    app.use(express.static(path.join("../build")))
+    app.get("*" , (req,res) => {res.sendFile(path.resolve(__dirname,'../' , 'build','index.html'))}) ;
+}
+
+app.listen(PORT, () => {
+  console.log("Backend server is running! on " ,{PORT}); 
 });
