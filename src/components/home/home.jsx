@@ -7,6 +7,17 @@ const api = {
   key: "50571f88a20f47961d7fa7f392951636",
   base: "https://api.openweathermap.org/data/2.5/"
 }
+export const  dateBuilder = (d) => {
+  let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+  let day = days[d.getDay()];
+  let date = d.getDate();
+  let month = months[d.getMonth()];
+  let year = d.getFullYear();
+
+  return `${day} ${date} ${month} ${year}`
+}
 function Home() {
   const [query, setQuery] = useState('');
   const [weather, setWeather] = useState({});
@@ -73,17 +84,7 @@ function Home() {
     pages[0].classList.remove("hide");
   }
 
-  const dateBuilder = (d) => {
-    let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-
-    let day = days[d.getDay()];
-    let date = d.getDate();
-    let month = months[d.getMonth()];
-    let year = d.getFullYear();
-
-    return `${day} ${date} ${month} ${year}`
-  }
+  
 
   return (
     <>
