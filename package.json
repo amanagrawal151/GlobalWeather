@@ -28,7 +28,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "heroku-postbuild" : "NPM_CONFIG_PRODUCTION=false npm install --prefix api && npm run build --prefix api"
+
   },
   "eslintConfig": {
     "extends": [

@@ -9,7 +9,7 @@ const authRoute = require("./routes/auth");
 const path = require('path'); 
 // const postRoute = require("./routes/posts");
 var cors = require('cors')
-
+const PORT = process.env.PORT || 8800
 app.use(cors()) // Use this after the variable declaration
 dotenv.config();
 
@@ -34,9 +34,17 @@ app.use("/api/users", userRoute);
 if(process.env.NODE_ENV === "production") 
 {
     app.use(express.static(path.join("../build")))
+<<<<<<< HEAD
     app.get("*" , (req,res) => {res.sendFile(path.resolve(__dirname,'../','build','index.html'))}) ;
 }
 
 app.listen(8800, () => {
   console.log("Backend server is running!"); 
+=======
+    app.get("*" , (req,res) => {res.sendFile(path.resolve(__dirname,'../' , 'build','index.html'))}) ;
+}
+
+app.listen(PORT, () => {
+  console.log("Backend server is running! on " ,{PORT}); 
+>>>>>>> 07b0c822c138f43b02eba6699e09aa1dd31ec2b3
 });
