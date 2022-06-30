@@ -4,7 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Footer from '../../layouts/footer/footer';
 const api = {
-  key: "50571f88a20f47961d7fa7f392951636",
+  key: "583bd670f771042fc9312c20036e8435",
   base: "https://api.openweathermap.org/data/2.5/"
 }
 export const  dateBuilder = (d) => {

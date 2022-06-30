@@ -7,7 +7,7 @@ import About from './components/about/Aboutus';
 import Login from './components/login/login';
 import Register from './components/register/register';
 import { useNavigate } from 'react-router';
-
+// import Geolocation from './components/geolocation/geolocation';
 import {
   Switch,
 
@@ -31,6 +31,7 @@ function App() {
         <Route path="/edit" element={<Edit />} />
         <Route path="/profile" element={user ? <Profile /> : <Navigate replace to="/login"/>}  />
         <Route exact path='register' element={<Register />} />
+        {/* <Route path ="/location" element={<Geolocation/>} /> */}
       </Routes>  
       <Footer />
     </Router>
