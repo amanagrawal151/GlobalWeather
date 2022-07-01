@@ -30,9 +30,9 @@ app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 // app.use("/api/posts", postRoute);
 
-app.get('/',(req,res) => {
-  res.send('APP is running') ;
-})
+// app.get('/',(req,res) => {
+//   res.send('APP is running') ;
+// })
 
 //server production asssets 
 // if(process.env.NODE_ENV === "production") 

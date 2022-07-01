@@ -52,7 +52,7 @@ export default function Login() {
               )}
             </button>
             {/* <span className="loginForgot">Forgot Password?</span> */}
-            <Link to="register" >
+            <Link to="/register" >
             <button className="loginRegisterButton">
               {isFetching ? (
                 <></>

@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 export default function Register() {
   const username = useRef();
   const email = useRef();
+  const city = useRef() ;
   const password = useRef();
   const passwordAgain = useRef();
   const history = useNavigate();
@@ -22,6 +23,7 @@ export default function Register() {
         username: username.current.value,
         email: email.current.value,
         password: password.current.value,
+        city: city.current.value
       };
       try {
         await api.post("/auth/register", user);
@@ -56,6 +58,13 @@ export default function Register() {
               ref={email}
               className="loginInput"
               type="email"
+            />
+            <input
+              placeholder="city"
+              required
+              ref={city}
+              className="loginInput"
+              type="text"
             />
             <input
               placeholder="Password"

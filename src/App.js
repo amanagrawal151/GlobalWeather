@@ -6,6 +6,7 @@ import Footer from './layouts/footer/footer';
 import About from './components/about/Aboutus';
 import Login from './components/login/login';
 import Register from './components/register/register';
+// import Coordinates from './components/home/latitude';
 import { useNavigate } from 'react-router';
 // import Geolocation from './components/geolocation/geolocation';
 import {
@@ -17,6 +18,7 @@ import { useContext } from "react";
 import { AuthContext } from "./components/contexts/AuthContext";
 import Profile from './components/profile/profile';
 import Edit from './components/edit/edit';
+import Coordinates from './components/home/latitude';
 function App() {
   const { user } = useContext(AuthContext);
     return (
@@ -31,6 +33,7 @@ function App() {
         <Route path="/edit" element={<Edit />} />
         <Route path="/profile" element={user ? <Profile /> : <Navigate replace to="/login"/>}  />
         <Route exact path='register' element={<Register />} />
+        <Route path = '/coordinates' element={<Coordinates/>} />
         {/* <Route path ="/location" element={<Geolocation/>} /> */}
       </Routes>  
       <Footer />

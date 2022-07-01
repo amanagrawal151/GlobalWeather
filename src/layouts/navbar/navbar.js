@@ -40,7 +40,10 @@ import { AuthContext } from "../../components/contexts/AuthContext";
     <div>
       <ul className="navbar-nav me-5 mb-2 mb-lg-0">
         <li className="nav-item">
-          <Link className="nav-link active" aria-current="page" to="/GlobalWeather">Home</Link>
+          <Link className="nav-link active" aria-current="page" to="/GlobalWeather">City</Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link active" aria-current="page" to="/coordinates">Coordinates</Link>
         </li>
         <li className="nav-item">
           <Link className="nav-link" to="/About">About</Link>

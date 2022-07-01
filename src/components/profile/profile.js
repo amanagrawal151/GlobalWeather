@@ -47,7 +47,7 @@ const Profile = () => {
                                         <div class="gap-3 mt-3 icons d-flex flex-row justify-content-center align-items-center">
                                             <span><i class="fa fa-twitter"></i></span> <span><i class="fa fa-facebook-f"></i></span>
                                             <span><i class="fa fa-instagram"></i></span> <span><i class="fa fa-linkedin"></i></span>
-                                        </div> <div class=" px-2 rounded mt-4 date "> <span class="join">Joined May,2021</span>
+                                        </div> <div class=" px-2 rounded mt-4 date "> <span class="join">Joined today</span>
                                         </div> </div> </div>
                             </div>
                         </div>
@@ -80,8 +80,8 @@ const Profile = () => {
                                         <div class="mr-5">
                                             <p class="light-text suggestion">MAXIMUM TEMPERATURE : {weather.main.temp + 5}</p>
                                             <p class="light-text suggestion">MINIMUM TEMPERATURE : {weather.main.temp - 5}</p>
-                                            <p class="light-text suggestion">New York</p>
-                                            <p class="light-text suggestion">California</p>
+                                            <p class="light-text suggestion">nice weather</p>
+                                            <p class="light-text suggestion">today</p>
 
                                             <div class="line my-5"></div>
 
