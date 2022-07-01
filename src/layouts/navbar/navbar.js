@@ -40,16 +40,13 @@ import { AuthContext } from "../../components/contexts/AuthContext";
     <div>
       <ul className="navbar-nav me-5 mb-2 mb-lg-0">
         <li className="nav-item">
-          <Link className="nav-link active" aria-current="page" to="/GlobalWeather">City</Link>
+          <Link className="nav-link active" aria-current="page" to="/GlobalWeather">Place</Link>
         </li>
         <li className="nav-item">
           <Link className="nav-link active" aria-current="page" to="/coordinates">Coordinates</Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/About">About</Link>
-        </li>
-        <li className="nav-item">
-          <Link className="nav-link" to="/Contact">Contact us</Link>
+          <Link className="nav-link active" aria-current="page" to="/mylocation">mylocation</Link>
         </li>
         {
         user ? 
@@ -68,6 +65,12 @@ import { AuthContext } from "../../components/contexts/AuthContext";
         }
         <li className="nav-item">
         <Link className="nav-link" to="/profile">profile</Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link" to="/About">About</Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link" to="/Contact">Contact us</Link>
         </li>
         </ul>
       </div>

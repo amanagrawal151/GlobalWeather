@@ -19,6 +19,7 @@ import { AuthContext } from "./components/contexts/AuthContext";
 import Profile from './components/profile/profile';
 import Edit from './components/edit/edit';
 import Coordinates from './components/home/latitude';
+import Mylocation from './components/home/mylocation';
 function App() {
   const { user } = useContext(AuthContext);
     return (
@@ -34,6 +35,7 @@ function App() {
         <Route path="/profile" element={user ? <Profile /> : <Navigate replace to="/login"/>}  />
         <Route exact path='register' element={<Register />} />
         <Route path = '/coordinates' element={<Coordinates/>} />
+        <Route path = '/mylocation' element={<Mylocation />} />
         {/* <Route path ="/location" element={<Geolocation/>} /> */}
       </Routes>  
       <Footer />
