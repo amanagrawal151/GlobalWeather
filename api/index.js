@@ -30,18 +30,19 @@ app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 // app.use("/api/posts", postRoute);
 
-//server production asssets 
-if(process.env.NODE_ENV === "production") 
-{
-    app.use(express.static(path.join("../build")))
-    app.get("*" , (req,res) => {res.sendFile(path.resolve(__dirname,'../','build','index.html'))}) ;
-}
-
-app.listen(8800, () => {
-  console.log("Backend server is running!"); 
-
-    app.get("*" , (req,res) => {res.sendFile(path.resolve(__dirname,'../' , 'build','index.html'))}) ;
+app.get('/',(req,res) => {
+  res.send('APP is running') ;
 })
+
+//server production asssets 
+// if(process.env.NODE_ENV === "production") 
+// {
+//     app.use(express.static(path.join("../build")))
+//     app.get("*" , (req,res) => {res.sendFile(path.resolve(__dirname,'../','build','index.html'))}) ;
+// }
+
+app.listen(PORT, () => console.log(`Server Running on Port: http://localhost:${PORT}`))
+// .catch((error) => console.log(`${error} did not connect`));
 
 // app.listen(PORT, () => {
 //   console.log("Backend server is running! on " ,{PORT}); 
