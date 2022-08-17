@@ -48,6 +48,12 @@ import { AuthContext } from "../../components/contexts/AuthContext";
         <li className="nav-item">
           <Link className="nav-link active" aria-current="page" to="/mylocation">mylocation</Link>
         </li>
+        <li className="nav-item">
+          <Link className="nav-link active" aria-current="page" to="/googlemap">map</Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link active" aria-current="page" to="/messenger">messenger</Link>
+        </li>
         {
         user ? 
         <li className="nav-item" onClick={handle}>

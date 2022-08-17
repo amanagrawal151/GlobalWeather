@@ -20,6 +20,8 @@ import Profile from './components/profile/profile';
 import Edit from './components/edit/edit';
 import Coordinates from './components/home/latitude';
 import Mylocation from './components/home/mylocation';
+import Messenger from './components/messenger/messenger';
+import SimpleMap from './components/googlemap/googlemap';
 function App() {
   const { user } = useContext(AuthContext);
     return (
@@ -36,7 +38,9 @@ function App() {
         <Route exact path='register' element={<Register />} />
         <Route path = '/coordinates' element={<Coordinates/>} />
         <Route path = '/mylocation' element={<Mylocation />} />
-        {/* <Route path ="/location" element={<Geolocation/>} /> */}
+        <Route path = '/messenger' element={user ? <Messenger/> : <Navigate replace to="/login"/>} />
+        <Route path = '/mylocation' element={<Mylocation />} />
+        <Route path ="/googlemap" element={<SimpleMap/>} /> 
       </Routes>  
       <Footer />
     </Router>

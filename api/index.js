@@ -6,6 +6,8 @@ const helmet = require("helmet");
 const morgan = require("morgan");
 const userRoute = require("./routes/users");
 const authRoute = require("./routes/auth");
+const messageRoute = require("./routes/messages")
+const conversationRoute = require("./routes/conversation")
 const path = require('path'); 
 // const postRoute = require("./routes/posts");
 var cors = require('cors')
@@ -28,6 +30,8 @@ app.use(morgan("common"));
 
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
+app.use("/api/conversations", conversationRoute);
+app.use("/api/messages", messageRoute);
 // app.use("/api/posts", postRoute);
 
 // app.get('/',(req,res) => {

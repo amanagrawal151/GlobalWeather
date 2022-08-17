@@ -1,6 +1,6 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../../assets/css/about.css'
+import '../../assets/css/about.css' 
 
 function About() {
   return (
